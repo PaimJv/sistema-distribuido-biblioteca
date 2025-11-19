@@ -1,3 +1,5 @@
+const link = 'http://localhost:3000/books'
+
 document.getElementById('form-cadastro').addEventListener('submit', async (e) => {
     e.preventDefault();
     const titulo = document.getElementById('titulo').value;
@@ -5,7 +7,7 @@ document.getElementById('form-cadastro').addEventListener('submit', async (e) =>
     const ano = document.getElementById('ano').value;
     
     try {
-        const response = await fetch('http://backend:3000/books', {
+        const response = await fetch(link, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ titulo, autor, ano })
@@ -25,7 +27,7 @@ document.getElementById('btn-consultar').addEventListener('click', carregarLivro
 
 async function carregarLivros() {
     try {
-        const response = await fetch('http://backend:3000/books');
+        const response = await fetch(link);
         const livros = await response.json();
         const lista = document.getElementById('lista-livros');
         lista.innerHTML = '';
